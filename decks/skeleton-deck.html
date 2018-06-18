@@ -92,59 +92,37 @@
           </aside>
         </section>
         <section>
-          <h2>Playbook Example</h2>
+          <h2>If you want to use code examples you can as well</h2>
           <pre class="language-yaml"><code data-noescape>
 ---
-- name: Ensure apache is installed and started
+- name: we have a yaml class built in that you can use
   hosts: web
   become: yes
   vars:
     http_port: 80
-
-  tasks:
-  - name: Ensure httpd package is present
-    yum:
-      name: httpd
-      state: latest
-
-  - name: Ensure latest index.html file is present
-    copy:
-      src: files/index.html
-      dest: /var/www/html/
-
-  - name: Ensure httpd is started
-    service:
-      name: httpd
-      state: started
           </code></pre>
           <aside class="notes">
-            <p>Here we can see an example of a simple but complete Ansible play. The slides that follow will explore each of these parts and what they do.</p>
+            <p>just more speaker notes</p>
           </aside>
         </section>
         <section>
             <section data-state="title alt">
-              <h1>Demo Time: <br/>A Playbook Using Roles</h1>
+              <h1>Demo Time: <br/>Adding slides below to explain another point</h1>
               <aside class="notes">
                 <p>Walk thru the site.yml playbook and the contents of <code>roles/apache</code> in <code>examples/apache-role</code>. Note how the tasks, variables and handlers from the basic Ansible playbook we've been examined and have been refactored into a role.</p>
                 <p>Run the playbook on the control host. Notice anything different? Other than a few subtle display changes, you shouldn't. What's important is how roles let you better organize, share and reuse Ansible content that will be vital as the scope and sophistication of your automation accelerates.</p>
               </aside>
             </section>
             <section data-state="title alt">
-              <h1>Workshop: <br/>Your First Roles</h1>
+              <h1>See how it works? <br/>You can put sections inside of sections. (to remove the red just remove the data state)</h1>
               <aside class="notes">
-                <p>Here students are tasked with refactoring their previous work from the Practical Playbook workshop into a role and modifying their playbook accordingly. We intentionally avoid introducing any new tasks or functionality otherwise. The objective here is to focus students specifically on how roles are structured and develop.</p>
-                <p>You should emphasize the value of roles in better organizing playbooks as they grow in sophistication and making Ansible automation more portable and reusable than a basic playbook.</p>
-                <p>See <code>workshops/roles</code> in the Ansible Lightbulb repo.</p>
+                <p>more speaker notes here for those deep dive slides</p>
               </aside>
             </section>
         </section>
         <section>
-          <h2>Next Steps</h2>
-          <ul>
-            <li><strong>It&apos;s easy to get started</strong><br/>ansible.com/get-started</li>
-            <li><strong>Join the Ansible community</strong><br/>ansible.com/community</li>
-            <li><strong>Would you like to learn a lot more?</strong><br/>redhat.com/en/services/training/do407-automation-ansible</li>
-          </ul>
+          <h2>Final slide</h2>
+            <p>If you have any qeuestions about how to use these slides then please consult the guide.md</p>
         </section>
       </div>
     </div>
