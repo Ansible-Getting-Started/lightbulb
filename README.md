@@ -8,17 +8,13 @@ This content is now taking on a new life as a multi-purpose toolkit for effectiv
 
 Over time Lightbulb will be expanded to include advanced and developer topics in addition to expanding beyond linux server automation and into Windows and network automation.
 
-To support these objectives, the project provides a lab provisioner tool for creating an environment to present and work with Lightbulb content.
-
 ## What's Provided
 
 The Ansible Lightbulb project has been designed to be used as a toolkit and best practices reference for Ansible presentations ranging from demos thru self-paced learning thru hands-on workshops. Here you will find:
 
 * Examples
-* Workshops
 * Presentation Decks
 * Guides
-* Lab Provisioner
 * Facilitator Documentation
 
 ### Examples
@@ -29,25 +25,16 @@ These examples are an excellent educational reference for communicating how Ansi
 
 This content is a great source for canned demos or something you can walk-thru to illustrate automating with Ansible to a group. Some of the examples  serve as the solutions to the workshops.
 
-### Workshops
-
-The content of `workshops/` are a collection of Markdown documents and applicable resources for providing hands-on assignments for learning how to automate with Ansible. The workshops are set up as exercises to be done by the participants, and are most suitable for smaller audiences.
-
-Instructor notes on the execution and solution to all workshops can be found in `facilitator/solutions/`.
 
 ### Presentation Decks
 
-The content of `decks/` are collection of presentation decks using the [reveal.js framework](http://lab.hakim.se/reveal-js/) for delivering instructor-led or hands-on instruction.
+The content of `decks/` are collection of presentation decks using the [reveal.js framework](http://lab.hakim.se/reveal-js/) for delivering presentations.
 
 ### Guides
 
 The `guides/` provide closely guided exercises with a lower barrier to entry. These are suitable for beginners or larger audiences. People can follow the guides on their own pace, and usually need very limited support is required during the execution of such labs.
 
 ### Lab Provisioner
-
-Lightbulb provides a lab provisioner utility for creating a personal lab environment for each student. Currently only Amazon Web Services (AWS) is supported in us-east-1 and us-west-1 with the foundation to support other regions in place.
-
-The provisioner and the documentation how to use it can be found in `tools/aws_lab_setup/`.
 
 **Coming Soon.** Vagrant support for self-paced learning is planned. Legacy support from the previous generation of Lightbulb remains, but is in need of an overhaul.
 
@@ -62,10 +49,9 @@ If you are planning on using Lightbulb for some sort of informal training on aut
 True to its philosophy and The Ansible Way, Lightbulb has been developed so that using Lightbulb is as simple and low-overhead as possible. Requirements depend on the format and delivery of the Lightbulb content.
 
 * Modern HTML5 Standard Compliant Web Browser
-* A recent stable version of Python 2.7 and the latest stable version of the boto libraries.
+* A recent stable version of Python 2.7 
 * The latest stable versions of Ansible.
 * A SSH client such as PuTTY or Mac OSX Terminal.
-* An AWS account or local Vagrant setup.
 
 ## Assumed Knowledge
 
@@ -80,6 +66,6 @@ For demos and instructor-led exercises, conceptual understanding of linux system
 
 ## License
 
-Red Hat, the Shadowman logo, Ansible, and Ansible Tower are trademarks or registered trademarks of Red Hat, Inc. or its subsidiaries in the United States and other countries.
+Red Hat, the Shadowman logo, Ansible, and Ansible Tower are trademarks or registered trademarks of Red Hat, Inc. or its subsidiaries in the United States and other countries. 
 
 All other parts of Ansible Lightbulb are made available under the terms of the [MIT License](LICENSE).
