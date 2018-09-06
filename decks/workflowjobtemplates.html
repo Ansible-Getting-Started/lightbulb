@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <title>Ansible Tips and Tricks</title>
+    <title>Job Templates and Workflows in Ansible</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/reveal.css">
 
@@ -39,20 +39,47 @@
       <div class="slides">
         <section data-state="cover">
           <p class="ans-logo"><img src="images/ansible-wordmark-white.svg" width="260" alt="" /></p>
-          <h1>Ansible Tips & Tricks</h1>
+          <h1>Job Templates and Workflows in Ansible Tower</h1>
           <p>NAME HERE, TITLE HERE</p>
           <p>COMPANY HERE</p>
         </section>
 
         <section>
-          <h2>Who are we? Why did we do this?</h2>
+          <h2>General Ansible Tower Setup</h2>
+          You will need: <br><br>
           <ul>
-            <li>We're on the Getting Started Team at Red Hat Ansible</li>
-            <li>Though similar to Support, we don't work directly with them</li>
-            <li>Needed a way to get logs in a quick and easy way</li>
+            <li>Inventory</li>
+            <li>A project to select a playbook from</li>
+            <li>Up-to-date credentials</li>
           </ul>
           <aside class="notes">
-            <p></p>
+            <p>Speaker notes</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>What is a Job Template?</h2>
+          <ul>
+            <li>A definition and set of parameters for running an Ansible playbook</li>
+            <li>In Ansible Tower, they are a visual realization of the <font face="Courier New">ansible-playbook</font> command and all flags you can utilize when executing from the command line.</li>
+            <li>It defines the combination of a playbook from a project, an inventory, a credential and any other Ansible parameters required to run.</li>
+          </ul>
+          <aside class="notes">
+            <p>Speaker notes</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Before You Start</h2>
+          <p>Whether you're invoking an inventory file or setting tags, you will
+            be adding arguments as part of the job template.
+            <br><br>It's recommended to know, before you start:</p>
+          <ul>
+            <li>How to connect to the machine (credentials) </li>
+            <li>What you want to change on the machine (project/playbook)</li>
+          </ul>
+          <aside class="notes">
+            <p>Speaker notes</p>
           </aside>
         </section>
 
@@ -61,18 +88,6 @@
           <p>you can add notes in anyway you would like</p>
           <aside class="notes">
             <p>Here are your speaker notes. </p>
-          </aside>
-        </section>
-
-        <section>
-          <h2>You can make it simple...</h2>
-          <p><img src="images/SimpleWorkflow.jpg"></p>
-          </aside>
-        </section>
-
-        <section>
-          <h2>...or complex!</h2>
-          <p><img src="images/ComplicatedWorkflow.jpg"></p>
           </aside>
         </section>
 
@@ -145,6 +160,20 @@
               </aside>
             </section>
         </section>
+
+            <section>
+              <h2>You can make it simple...</h2>
+              <p><img src="images/SimpleWorkflow.jpg"></p>
+              </aside>
+            </section>
+
+            <section>
+              <h2>...or complex!</h2>
+              <p><img src="images/ComplicatedWorkflow.jpg"></p>
+              </aside>
+            </section>
+
+
         <section>
           <h2>Final slide</h2>
             <p>If you have any qeuestions about how to use these slides then please consult the guide.md</p>
