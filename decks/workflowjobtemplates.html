@@ -84,24 +84,29 @@
         </section>
 
         <section>
-          <h2>This is the first slide of the presentation</h2>
-          <p>you can add notes in anyway you would like</p>
+          <h2>Creating a Job Template</h2>
+          <ul>
+            <li>Select Templates from the top of the screen:</li>
+            <p><img src="images/first_one.png"></p>
+            <li>Navigate to the "Add" drop-down box and select Job Template.</li>
+          </ul>
           <aside class="notes">
             <p>Here are your speaker notes. </p>
           </aside>
         </section>
 
         <section>
-            <h2>Another Slide</h2>
-            <p> These slides are written in reveal.js and html. </p>
+            <h2>Naming and Job Type</h2>
               <ul>
-                <li>So if you want to add your notes or anything </li>
-                <li>In some kind of list or another "html" support way </li>
-                <li>Then you can</li>
+                <li>Name the job template anything you like.</li>
+                <li>Select either "Check" or "Run" for Job Type:</li>
+                <p><img src="images/first_row.png"></p>
+                <em>Check</em> performs a “dry run” of the playbook.<br><br>
+                <em>Run</em> will execute the tasks in the playbook on the selected hosts.
               </ul>
             <aside class="notes">
-              <p> Here are the speaker notes again.
-            </aisde>
+              <p> Here are the speaker notes again.</p>
+            </aside>
         </section>
         <section>
             <h2>Here is another slide</h2>
@@ -161,7 +166,77 @@
             </section>
         </section>
 
-            <section>
+        <section>
+            <h2>Another Slide</h2>
+            <p> These slides are written in reveal.js and html. </p>
+              <ul>
+                <li>So if you want to add your notes or anything </li>
+                <li>In some kind of list or another "html" support way </li>
+                <li>Then you can</li>
+              </ul>
+            <aside class="notes">
+              <p> Here are the speaker notes again.</p>
+            </aside>
+        </section>
+        <section>
+            <h2>Here is another slide</h2>
+            <aside class="notes">
+            </aside>
+        </section>
+        <section>
+          <h2>This might be another slide here as well.</h2>
+          <aside class="notes">
+            <p>Here are more speaker notes</p>
+          </aside>
+        </section>
+        <section>
+          <h2>This is yet another slide.</h2>
+          <aside class="notes">
+            <p>Here are more speaker notes</p>
+          </aside>
+        </section>
+        <section>
+          <h2>And another slide</h2>
+          <aside class="notes">
+            <p>More and more speaker notes</p>
+          </aside>
+        </section>
+        <section>
+          <h2>another slide</h2>
+          <aside class="notes">
+            <p>Here are more speakers notes, are we getting the hang of where stuff goes?</p>
+          </aside>
+        </section>
+        <section>
+          <h2>If you want to use code examples you can as well</h2>
+          <pre class="language-yaml"><code data-noescape>
+---
+- name: we have a yaml class built in that you can use
+  hosts: web
+  become: yes
+  vars:
+    http_port: 80
+          </code></pre>
+          <aside class="notes">
+            <p>just more speaker notes</p>
+          </aside>
+        </section>
+        <section>
+            <section data-state="title alt">
+              <h1>Demo Time: <br/>Adding slides below to explain another point</h1>
+              <aside class="notes">
+                <p></p>
+              </aside>
+            </section>
+            <section data-state="title alt">
+              <h1>See how it works? <br/>You can put sections inside of sections. (to remove the red just remove the data state)</h1>
+              <aside class="notes">
+                <p>more speaker notes here for those deep dive slides</p>
+              </aside>
+            </section>
+        </section>
+
+        <section>
               <h2>You can make it simple...</h2>
               <p><img src="images/SimpleWorkflow.jpg"></p>
               </aside>
