@@ -97,12 +97,13 @@
 
         <section>
             <h2>Naming and Job Type</h2>
-              <ul>
-                <li>Name the job template anything you like.</li>
-                <li>Select either "Check" or "Run" for Job Type:</li>
-                <p><img src="images/first_row.png"></p>
-                <em><b>Check</b></em> performs a “dry run” of the playbook.<br><br>
-                <em><b>Run</b></em> will execute the tasks in the playbook on the selected hosts.
+            <p><img src="images/first_row.png"></p>
+            <ul>
+              <li>Name the job template anything you like</li>
+              <li>Descriptions are optional</li>
+              <li>Select either "Check" or "Run" for Job Type:</li>
+                <em><b>Check</b></em> performs a “dry run” of the playbook<br>
+                <em><b>Run</b></em> will execute the tasks in the playbook on the selected hosts
               </ul>
             <aside class="notes">
               <p> Speaker notes</p>
@@ -110,25 +111,36 @@
         </section>
 
         <section>
-            <h2>Inventory, Product, and Playbook Selection</h2>
+            <h2>Inventory, Project, and Playbook Selection</h2>
+            <p><img src="images/second_row.png"></p>
             <ul>
-              <li>There is a “prompt at launch” option for the Inventory section.  Users can alternatively invoke a more complex selection prompt at the beginning of a job using a Survey.</li>
-              <li>The project determines which playbooks can be selected.</li>
-              <li>Tower will not display the full file name of playbooks (<em>e.g.</em>, AWS.yml will display as AWS).</li>
-              <p><img src="images/second_row.png"></p>
+              <li>There is a “prompt on launch” option for the Inventory selection; users can alternatively invoke a more complex selection prompt at the beginning of a job using a Survey</li>
+              <li>The Project option determines which playbooks can be selected</li>
+              <li>Tower will not display the full file name of playbooks (<em>e.g.</em>, AWS.yml will display as AWS)</li>
             </ul>
             <aside class="notes">
             </aside>
         </section>
 
         <section>
-          <h2>Credentials</h2>
+          <h2>Credentials, Forks, Limits</h2>
+          <p><img src="images/third_row.png"></p>
           <ul>
-            <li>Name the job template anything you like.</li>
-            <li>Select either "Check" or "Run" for Job Type:</li>
-            <p><img src="images/first_row.png"></p>
-            <em><b>Check</b></em> performs a “dry run” of the playbook.<br><br>
-            <em><b>Run</b></em> will execute the tasks in the playbook on the selected hosts.
+            <li>Choose the credential from the available options to be used with this job template</li>
+            <li>Forks are the number of parallel or simultaneous processes to use while executing the playbook; a value of zero uses the Ansible default setting, which is five parallel processes unless overridden in <font face="Courier New">/etc/ansible/ansible.cfg</font></li>
+            <li>The Limit option provides a host pattern to further constrain the list of hosts that will be managed or affected by the playbook; multiple patterns are allowed</li>
+          <aside class="notes">
+            <p>Speaker notes</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>Verbosity, Instance Groups, Job Tags</h2>
+          <p><img src="images/fourth_row.png"></p>
+          <ul>
+            <li>Verbosity controls the level of output Ansible will produce as the playbook executes</li>
+            <li>Users can optionally select which Instance Groups the job template will run on</li>
+            <li>Job tags are useful when you have a large playbook and want to run a specific part of a play or task; this option provides a comma-separated list of playbook tags to specify what parts of the playbooks should be executed</li>
           </ul>
           <aside class="notes">
             <p>Speaker notes</p>
@@ -136,13 +148,12 @@
         </section>
 
         <section>
-          <h2>Forks, Limits, and Verbosity</h2>
+          <h2>Skip Tags, Labels, Show Changes</h2>
+          <p><img src="images/fifth_row.png"></p>
           <ul>
-            <li>Name the job template anything you like.</li>
-            <li>Select either "Check" or "Run" for Job Type:</li>
-            <p><img src="images/first_row.png"></p>
-            <em><b>Check</b></em> performs a “dry run” of the playbook.<br><br>
-            <em><b>Run</b></em> will execute the tasks in the playbook on the selected hosts.
+            <li>Skip Tags is a useful option when you have a large playbook and want to skip specific parts of a play or task</li>
+            <li>Labels are optional and can be used to describe the job template, <em>i.e.</em>, "test" or "dev"</li>
+            <li>When Show Changes is on, users can see changes made by Ansible tasks</li>
           </ul>
           <aside class="notes">
             <p>Speaker notes</p>
@@ -151,10 +162,12 @@
 
         <section>
           <h2>Other Options</h2>
+          <p><img src="images/other_options.png"></p>
           <ul>
-            <li><em>Enable Privilege Escalation:</em>  Acts in the same manner as passing <font face="Courier New">--become</font> with the <font face="Courier New">ansible-playbook</font> command on the command line</li>
-            <li><em>Allow Provisioning Callbacks:</em>  Creates a provisioning callback URL that allows the host to callback to Ansible Tower for configuration based on the specific job template</li>
+            <li><em>Enable Privilege Escalation:</em>  Enable this to run the playbook as an administrator</li>
+            <li><em>Allow Provisioning Callbacks:</em>  Enables a host to call back to Tower via the Tower API and launch a job from this job template</li>
             <li><em>Enable Concurrent Jobs:</em>  Allows simultaneous runs of this particular job template</li>
+            <li><em>Use Fact Cache:</em>  When enabled, this activates an Ansible fact cache plugin for all hosts in an inventory related to the job running</li>
           </ul>
           <aside class="notes">
             <p>Speaker notes</p>
@@ -171,89 +184,6 @@
         <section>
             <section data-state="title alt">
               <h1>Demo Time: <br/>[Optional slide; can show in Tower]</h1>
-              <aside class="notes">
-                <p></p>
-              </aside>
-            </section>
-            <section data-state="title alt">
-              <h1>See how it works? <br/>You can put sections inside of sections. (to remove the red just remove the data state)</h1>
-              <aside class="notes">
-                <p>Speaker notes</p>
-              </aside>
-            </section>
-        </section>
-
-        <section>
-          <h2>This might be another slide here as well.</h2>
-          <aside class="notes">
-            <p>Speaker notes</p>
-          </aside>
-        </section>
-
-        <section>
-            <h2>Another Slide</h2>
-            <p> These slides are written in reveal.js and html. </p>
-              <ul>
-                <li>So if you want to add your notes or anything </li>
-                <li>In some kind of list or another "html" support way </li>
-                <li>Then you can</li>
-              </ul>
-            <aside class="notes">
-              <p>Speaker notes</p>
-            </aside>
-        </section>
-
-        <section>
-            <h2>Here is another slide</h2>
-            <aside class="notes">
-            </aside>
-        </section>
-
-        <section>
-          <h2>This might be another slide here as well.</h2>
-          <aside class="notes">
-            <p>Speaker notes</p>
-          </aside>
-        </section>
-
-        <section>
-          <h2>This is yet another slide.</h2>
-          <aside class="notes">
-            <p>Speaker notes</p>
-          </aside>
-        </section>
-
-        <section>
-          <h2>And another slide</h2>
-          <aside class="notes">
-            <p>Speaker notes</p>
-          </aside>
-        </section>
-
-        <section>
-          <h2>Another slide</h2>
-          <aside class="notes">
-            <p>Here are more speakers notes, are we getting the hang of where stuff goes?</p>
-          </aside>
-        </section>
-
-        <section>
-          <h2>If you want to use code examples you can as well</h2>
-          <pre class="language-yaml"><code data-noescape>
----
-- name: we have a yaml class built in that you can use
-  hosts: web
-  become: yes
-  vars:
-    http_port: 80
-          </code></pre>
-          <aside class="notes">
-            <p>Speaker notes</p>
-          </aside>
-        </section>
-        <section>
-            <section data-state="title alt">
-              <h1>Demo Time: <br/>Adding slides below to explain another point</h1>
               <aside class="notes">
                 <p></p>
               </aside>
@@ -284,8 +214,13 @@
 
 
         <section>
-          <h2>Final slide</h2>
-            <p>If you have any qeuestions about how to use these slides then please consult the guide.md</p>
+          <h2>For More Information</h2>
+            <p><b>Official Ansible Documentation:</b><br><br>
+            https://docs.ansible.com/ansible-tower/latest/html/userguide/job_templates.html
+            <br><br><br>
+            <b>Blog Post:</b><br><br>
+            https://www.ansible.com/blog/getting-started-setting-up-an-ansible-job-template
+            </p>
         </section>
       </div>
     </div>
