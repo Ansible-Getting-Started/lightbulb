@@ -61,8 +61,8 @@
           <h2>What is a Job Template?</h2>
           <ul>
             <li>A definition and set of parameters for running an Ansible playbook</li>
-            <li>In Ansible Tower, they are a visual realization of the <font face="Courier New">ansible-playbook</font> command and all flags you can utilize when executing from the command line.</li>
-            <li>It defines the combination of a playbook from a project, an inventory, a credential and any other Ansible parameters required to run.</li>
+            <li>In Ansible Tower, they are a visual realization of the <font face="Courier New">ansible-playbook</font> command and all flags you can utilize when executing from the command line</li>
+            <li>It defines the combination of a playbook from a project, an inventory, a credential and any other Ansible parameters required to run</li>
           </ul>
           <aside class="notes">
             <p>Speaker notes</p>
@@ -72,7 +72,7 @@
         <section>
           <h2>Before You Start</h2>
           <p>Whether you're invoking an inventory file or setting tags, you will
-            be adding arguments as part of the job template.
+            be adding arguments as part of the job template
             <br><br>It's recommended to know, before you start:</p>
           <ul>
             <li>How to connect to the machine (credentials) </li>
@@ -88,7 +88,7 @@
           <ul>
             <li>Select Templates from the top of the screen:</li>
             <p><img src="images/first_one.png"></p>
-            <li>Navigate to the "Add" drop-down box and select Job Template.</li>
+            <li>Navigate to the "Add" drop-down box and select Job Template</li>
           </ul>
           <aside class="notes">
             <p>Speaker notes</p>
@@ -181,9 +181,10 @@
             <p>Speaker notes</p>
           </aside>
         </section>
+
         <section>
             <section data-state="title alt">
-              <h1>Demo Time: <br/>[Optional slide; can show in Tower]</h1>
+              <h1>Job Template Demo Time: <br/>[Optional slide, can show in Tower]</h1>
               <aside class="notes">
                 <p></p>
               </aside>
@@ -196,22 +197,154 @@
             </section>
         </section>
 
-        <section>
-              <h2>You can make it simple...</h2>
-              <p><img src="images/SimpleWorkflow.jpg"></p>
+            <section>
+              <h2>What is a Workflow?</h2>
+              <ul>
+                <li>Available as of Ansible Tower version 3.1</li>
+                <li>Enables users to create sequences consisting of any combination of job templates, project syncs, and inventory syncs that are linked together in a single unit</li>
+                <li>Helps to organize playbooks and job templates into separate groups</li>
+              </ul>
               <aside class="notes">
                 <p>Speaker notes</p>
               </aside>
             </section>
 
             <section>
-              <h2>...or complex!</h2>
-              <p><img src="images/ComplicatedWorkflow.jpg"></p>
+              <h2>What Makes Workflows Useful?</h2>
+              <ul>
+                <li>Can set up ordered structures for different teams to use</li>
+                <li>Not everyone involved will need to know what job run goes after what, since the structure is set up for them by the user who created the workflow</li>
+                <li>Connects disparate job types and unifies projects without each team needing to know everything about what the other does</li>
+                <li>They allow the user to take any number of playbooks and “daisy chain” them</li>
+                <li>Provides the ability to make a decision tree depending on a job’s success or failure</li>
+              </ul>
               <aside class="notes">
                 <p>Speaker notes</p>
               </aside>
             </section>
 
+            <section>
+              <h2>Creating a Workflow</h2>
+              <p>Go into the Templates section on the top menu of Ansible Tower:</p>
+              <p><img src="images/creating_workflow1.jpg"></p>
+              <aside class="notes">
+                <p>Speaker notes</p>
+              </aside>
+            </section>
+
+            <section>
+              <h2>Creating a Workflow (continued)</h2>
+              <p>From there, click on “Add”, but make sure to select “Workflow Template”:</p>
+              <p><img src="images/creating_workflow2.jpg"></p>
+              <aside class="notes">
+                <p>Speaker notes</p>
+              </aside>
+            </section>
+
+            <section>
+              <h2>Creating a Workflow (continued)</h2>
+              <p>On this screen, name your workflow template anything you like and save it:</p>
+              <p><img src="images/creating_workflow3.jpg"></p>
+              <aside class="notes">
+                <p>Speaker notes</p>
+              </aside>
+            </section>
+
+            <section>
+              <h2>Creating a Workflow (continued)</h2>
+              <p>Go into “Workflow Editor”:</p>
+              <p><img src="images/creating_workflow4.jpg"></p>
+              <aside class="notes">
+                <p>Speaker notes</p>
+              </aside>
+            </section>
+
+            <section>
+              <h2>Creating a Workflow (continued)</h2>
+              <p>Job templates can be added on this screen; users can select set them to run on failure, success, or with either outcome:</p>
+              <p><img src="images/creating_workflow5.jpg"></p>
+              <aside class="notes">
+                <p>Speaker notes</p>
+              </aside>
+            </section>
+
+            <section>
+                  <h2>Example Workflow</h2>
+                  <p>You can make them as simple...</p>
+                  <p><img src="images/SimpleWorkflow.jpg"></p>
+                  <aside class="notes">
+                    <p>Speaker notes</p>
+                  </aside>
+                </section>
+
+                <section>
+                  <h2>Another Example Workflow</h2>
+                  <p>...or as complex as you need to!</p>
+                  <p><img src="images/ComplicatedWorkflow.jpg"></p>
+                  <aside class="notes">
+                    <p>Speaker notes</p>
+                  </aside>
+                </section>
+
+            <section>
+              <h2>Scheduling Workflows</h2>
+              <p>Sentence:</p>
+              <p><img src="images/creating_workflow4.jpg"></p>
+              <aside class="notes">
+                <p>Speaker notes</p>
+              </aside>
+            </section>
+
+            <section>
+              <h2>Scheduling Workflows (continued)</h2>
+              <p>Sentence:</p>
+              <p><img src="images/creating_workflow4.jpg"></p>
+              <aside class="notes">
+                <p>Speaker notes</p>
+              </aside>
+            </section>
+
+            <section>
+              <h2>Duplicating Workflows</h2>
+              <p>Sentence:</p>
+              <p><img src="images/creating_workflow4.jpg"></p>
+              <aside class="notes">
+                <p>Speaker notes</p>
+              </aside>
+            </section>
+
+            <section>
+              <h2>Surveys</h2>
+              <p>Sentence:</p>
+              <p><img src="images/creating_workflow4.jpg"></p>
+              <aside class="notes">
+                <p>Speaker notes</p>
+              </aside>
+            </section>
+
+            <section>
+              <h2>Notifications</h2>
+              <p>Sentence:</p>
+              <p><img src="images/creating_workflow4.jpg"></p>
+              <aside class="notes">
+                <p>Speaker notes</p>
+              </aside>
+            </section>
+
+            <section>
+                <section data-state="title alt">
+                  <h1>Workflow Demo Time: <br/>[Optional slide, can show in Tower]</h1>
+                  <aside class="notes">
+                    <p></p>
+                  </aside>
+                </section>
+                <section data-state="title alt">
+                  <h1>See how it works? <br/>You can put sections inside of sections. (to remove the red just remove the data state)</h1>
+                  <aside class="notes">
+                    <p>Speaker notes</p>
+                  </aside>
+                </section>
+            </section>
 
         <section>
           <h2>For More Information</h2>
