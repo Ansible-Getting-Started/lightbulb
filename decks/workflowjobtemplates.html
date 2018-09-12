@@ -184,7 +184,7 @@
 
         <section>
             <section data-state="title alt">
-              <h1>Job Template Demo Time: <br/>[Optional slide, can show in Tower]</h1>
+              <h1>Job Template Demo Time: <br/>[Could show job templates in Tower (optional)]</h1>
               <aside class="notes">
                 <p></p>
               </aside>
@@ -288,8 +288,8 @@
 
             <section>
               <h2>Scheduling Workflows</h2>
-              <p>Sentence:</p>
-              <p><img src="images/creating_workflow4.jpg"></p>
+              <p>Click on the calendar icon next to any workflow job template:</p>
+              <p><img src="images/schedule_workflows1.jpg"></p>
               <aside class="notes">
                 <p>Speaker notes</p>
               </aside>
@@ -297,8 +297,8 @@
 
             <section>
               <h2>Scheduling Workflows (continued)</h2>
-              <p>Sentence:</p>
-              <p><img src="images/creating_workflow4.jpg"></p>
+              <p>...and fill out the information for when you want the specified workflow to automatically run:</p>
+              <p><img src="images/schedule_workflows2.jpg"></p>
               <aside class="notes">
                 <p>Speaker notes</p>
               </aside>
@@ -306,34 +306,53 @@
 
             <section>
               <h2>Duplicating Workflows</h2>
-              <p>Sentence:</p>
-              <p><img src="images/creating_workflow4.jpg"></p>
+              <p>To make a copy of an existing workflow, click on the button highlighted below:</p>
+              <p><img src="images/copy_workflows.jpg"></p>
               <aside class="notes">
-                <p>Speaker notes</p>
+                <p>Keep in mind that copying a workflow won’t also copy over any of the permissions, notifications, or schedules associated with the original.</p>
               </aside>
             </section>
 
             <section>
               <h2>Surveys</h2>
-              <p>Sentence:</p>
-              <p><img src="images/creating_workflow4.jpg"></p>
+              <p>Select a workflow template and click on the “Add Survey” button:</p>
+              <p><img src="images/workflow_survey1.jpg"></p>
               <aside class="notes">
-                <p>Speaker notes</p>
+                <p>If you need to set extra variables for the playbooks involved in a workflow template and/or allow for authorization of user input, then setting up surveys is the way to go.</p>
+              </aside>
+            </section>
+
+            <section>
+              <h2>Surveys (continued)</h2>
+              <p>A survey screen that you can fill out with specific questions and answer types will show up:</p>
+              <p><img src="images/workflow_survey2.jpg"></p>
+              <aside class="notes">
+                <p>If you need to set extra variables for the playbooks involved in a workflow template and/or allow for authorization of user input, then setting up surveys is the way to go.</p>
               </aside>
             </section>
 
             <section>
               <h2>Notifications</h2>
-              <p>Sentence:</p>
-              <p><img src="images/creating_workflow4.jpg"></p>
+              <p>Select the workflow that you want to set notifications for, then click the Notifications button:</p>
+              <p><img src="images/workflow_notification1.jpg"></p>
               <aside class="notes">
-                <p>Speaker notes</p>
+                <p>Notifications can give you more control and knowledge related to specific workflows.</p>
+              </aside>
+            </section>
+
+            <section>
+              <h2>Notifications (continued)</h2>
+              <p>The screen that comes up will enable you to select specific notifications; in the example below the “Workflow-Specific Notification” has been set to activate on either a successful or failed run:</p>
+              <p><img src="images/workflow_notification2.jpg"></p>
+              <aside class="notes">
+                <p>Keep in mind that you’ll have to already have some notifications set up in the Notifications list.
+                  Also, make sure you have “update on launch” on your inventory selected when you make a new workflow job template if you’re acting against a dynamic inventory!</p>
               </aside>
             </section>
 
             <section>
                 <section data-state="title alt">
-                  <h1>Workflow Demo Time: <br/>[Optional slide, can show in Tower]</h1>
+                  <h1>Workflow Demo Time: <br/>[Could show workflows in Tower (optional)]</h1>
                   <aside class="notes">
                     <p></p>
                   </aside>
@@ -349,11 +368,11 @@
         <section>
           <h2>For More Information</h2>
             <p><b>Official Ansible Documentation:</b><br><br>
-            https://docs.ansible.com/ansible-tower/latest/html/userguide/job_templates.html
-            <br><br><br>
-            <b>Blog Post:</b><br><br>
-            https://www.ansible.com/blog/getting-started-setting-up-an-ansible-job-template
-            </p>
+            <em>Job Templates</em><br>
+            https://docs.ansible.com/ansible-tower/latest/html/userguide/job_templates.html<br><br>
+            <em>Workflows</em><br>
+            https://docs.ansible.com/ansible-tower/latest/html/userguide/workflow_templates.html<br>
+            <br></p>
         </section>
       </div>
     </div>
