@@ -175,17 +175,162 @@
         </section>
 
         <section>
-          <h2>If you want to use code examples you can as well</h2>
+            <h2>WHAT CAN I DO WITH ANSIBLE?</h2>
+            <p>Automate the deployment and management of your entire IT footprint.</p>
+            <p><img src="images/ansible_possibilities.jpg"></p>
+            <aside class="notes">
+              <p>On this slide, you can see the different use cases for how to manage and automate your machines.
+                (some examples are: security and compliance, orchestration, creating new VMs, creating a CI/CD pipeline) - all of these things can be done with Ansible.
+              </p>
+            </aside>
+        </section>
+
+        <section>
+          <h2>INSTALLING ANSIBLE</h2>
           <pre class="language-yaml"><code data-noescape>
----
-- name: we have a yaml class built in that you can use
-  hosts: web
-  become: yes
-  vars:
-    http_port: 80
+# the most common and preferred way of installation
+$ pip install ansible
+
+# install the epel-release RPM if needed on CentOS, RHEL, or Scientific Linux
+$ sudo yum install ansible
+
+# you will need the PPA repo configured
+$ sudo apt-get install ansible
           </code></pre>
           <aside class="notes">
-            <p>just more speaker notes</p>
+            <p>There are many ways to install Ansible, including making your own rpm package, running from source, or you can just use a package manager.   As you can see, the examples below are using pip, yum, and apt.
+              The yum and apt installations require additional steps so if you prefer using a single command, then you can install with pip.
+                1 - Most common and preferred way (unless your Python is set up weird)
+                2 - If you’re running a RHEL or CentOS type of machine, install epel-release and grab the package from there
+                3- Ubuntu/Debian flavor OS
+              If anything stumps you, it’s always helpful to take a look at the Ansible Installation documentation for more information.
+            </p>
+          </aside>
+        </section>
+
+        <section>
+            <h2>HOW ANSIBLE WORKS</h2>
+            <p><img src="images/how_ansible_works.jpg"></p>
+            <aside class="notes">
+              <p>Once you have Ansible installed, you’re going to need to become acquainted with the key components of how Ansible works.
+                The graphic on this slide shows the relationship between all the main pieces of Ansible, starting with the user who writes an Ansible playbook.
+              </p>
+            </aside>
+        </section>
+
+        <section>
+          <h2>MODULES</h2>
+          <p><font color="52AAAC"><strong>Modules are bits of code transferred to the target system and executed to satisfy the task declaration.</strong></font><br></p>
+          <div style="float: left; width: 50%;">
+          <ul>
+          <li>apt/yum</li>
+          <li>copy</li>
+          <li>file</li>
+          <li>get_url</li>
+          <li>git</li>
+          <li>ping</li>
+          <li>debug</li>
+          </ul>
+          </div>
+          <div style="float: right; width: 50%;">
+          <ul>
+          <li>service</li>
+          <li>synchronize</li>
+          <li>template</li>
+          <li>uri</li>
+          <li>user</li>
+          <li>wait_for</li>
+          <li>assert</li>
+          </ul>
+          </div>
+          <aside class="notes">
+            <p>We talked a bit about modules in the previous couple slides, but I did want to point out a list of some commonly used modules that you may see out in example repos, blog posts, etc. a fair amount.
+              Typically, you're going to see a lot of package management modules being used, lots of file modules like copy and file, but as mentioned previously, there are tons more as well.</p>
+          </aside>
+        </section>
+
+        <section>
+            <h2>MODULES</h2>
+            <p><img src="images/module_index.jpg"></p>
+            <p><font color="52AAAC"><strong>https://docs.ansible.com/ansible/latest/modules/modules_by_category.html</strong></font><br></p>
+            <aside class="notes">
+              <p>You can check out all of them by looking at the exhaustive module index on docs.ansible.com.
+                They’re broken down by category, so you can more easily find what you need.
+                I would highly recommend bookmarking this page!
+              </p>
+            </aside>
+        </section>
+
+        <section>
+          <h2>MODULES: RUN COMMANDS</h2>
+          <p><font color="52AAAC"><strong>If Ansible doesn’t have a module that suits your needs there are the “run command” modules:</strong></font><br><br></p>
+          <ul>
+            <li><strong>command:</strong> Takes the command and executes it. The most secure and predictable.</li>
+            <li><strong>shell:</strong> Executes through a shell like /bin/sh so you can use pipes etc. Be careful.</li>
+            <li><strong>script:</strong> Runs a local script on a remote node after transferring it.</li>
+            <li><strong>raw:</strong> Executes a command  without going through the Ansible module subsystem.</li>
+          </ul>
+          <br>
+            <p><strong>NOTE:</strong> Unlike standard modules, run commands have no concept of desired state and should only be used as a last resort</p>
+          <aside class="notes">
+            <p>On this slide we’re gonna discuss the command and shell modules which are super useful because you can execute commands with them on your remote nodes.
+              The only big difference is that the command is not processed through the shell so redirect options and certain variables won’t work.
+              If you need those, just use the shell module instead.
+              The command modules let you run networking commands with Ansible, the same way a network engineer would type them on the command line.
+
+              If you have something that’s not a core module or you haven't written a custom one, you can utilize the script module.
+              For example, if you want to push out a homegrown script, you can do that here.
+
+              We also have the raw module, which issues a pure SSH command and bypasses the python module mechanism.
+              This is handy if you’re talking to a machine that doesn’t have python (for example, a server that’s running Windows!).
+            </p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>AD-HOC COMMANDS</h2>
+          <pre class="language-yaml"><code data-noescape>
+            # check all my inventory hosts are ready to be managed by Ansible
+            $ ansible all -m ping
+
+            # run the uptime command on all hosts in the web group
+            $ ansible web -m command -a “uptime”
+
+            # collect and display the discovered for the localhost
+            $ ansible localhost -m setup
+          </code></pre>
+          <aside class="notes">
+            <p>We’re going to transition right into ad-hoc commands from the commands modules because often times, you utilize command/shell to issue one-off commands to your hosts.
+              This is essentially what ad-hoc commands are; just quick checks on your servers that you don’t want to preserve in an Ansible playbook.
+              The examples here are pretty typical.
+                Our first example is just checking whether we have connectivity with the host by issuing the ping command (I do this all the time to make sure everything is responding).
+                In the second example here, you can see the command to check the uptime on the two servers in my web group using the command module.
+                And lastly, the third example is gathering facts about our local machine which would yield the information that you can use for conditionals and variables and whatnot.
+                [a bit of the output is shown on next slide]
+            </p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>SIDEBAR: DISCOVERED FACTS</h2>
+          <pre class="language-yaml"><code data-noescape>
+$ ansible localhost -m setup
+localhost | success >> {
+	"ansible_facts": {
+    	"ansible_default_ipv4": {
+        	"address": "192.168.1.37",
+        	"alias": "wlan0",
+        	"gateway": "192.168.1.1",
+        	"interface": "wlan0",
+        	"macaddress": "c4:85:08:3b:a9:16",
+        	"mtu": 1500,
+        	"netmask": "255.255.255.0",
+        	"network": "192.168.1.0",
+        	"type": "ether"
+    	},
+          </code></pre>
+          <aside class="notes">
+            <p>This is just a small sampling of what’s gathered from that setup ad hoc command.</p>
           </aside>
         </section>
 
