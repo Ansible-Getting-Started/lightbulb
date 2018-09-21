@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Ansible Essentials</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/reveal.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/print/pdf.css' : 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+
+    <link rel="stylesheet" href="css/theme/ansible.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/css/zenburn.css"-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css">
+
+
+  </head>
+  <body>
+  <div class="ans-mark">
+    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="-449 450 125 125" style="enable-background:new -449 450 125 125;" xml:space="preserve">
+      <g id="XMLID_3_">
+        <circle id="XMLID_7_" class="circle" cx="-386.5" cy="512.5" r="62"/>
+        <path id="XMLID_4_" class="a-mark" d="M-356.9,537.1l-24.7-59.4c-0.7-1.7-2.1-2.6-3.9-2.6c-1.7,0-3.2,0.9-4,2.6l-27.1,65.2h9.2 l10.7-26.9l32,25.9c1.3,1,2.2,1.5,3.4,1.5c2.4,0,4.6-1.8,4.6-4.5C-356.5,538.5-356.6,537.8-356.9,537.1z M-385.4,488.4l16.1,39.6 l-24.2-19L-385.4,488.4z"/>
+      </g>
+    </svg>
+  </div>
+    <div class="reveal">
+      <div class="slides">
+        <section data-state="cover">
+          <p class="ans-logo"><img src="images/ansible-wordmark-white.svg" width="260" alt="" /></p>
+          <h1>Ansible Essentials</h1>
+          <p>NAME HERE, TITLE HERE</p>
+          <p>COMPANY HERE</p>
+        </section>
+
+        <section>
+          <h2>WHAT YOU WILL LEARN</h2>
+          <p>Ansible is capable of handling many powerful automation tasks with the flexibility to adapt to many environments and workflows. With Ansible, users can very quickly get up and running to do real work.
+          <br><br>In this presentation, we will cover:</p>
+          <ul>
+            <li>What is Ansible</li>
+            <li>How Ansible Works</li>
+            <li>Ad-Hoc Commands</li>
+            <li>Playbook Basics</li>
+            <li>Reuse and Redistribution of Ansible Content with Roles</li>
+            <li>Ansible Tower</li>
+          </ul>
+          <aside class="notes">
+            <p>Today we are going to cover the following topics: (read the list)</p>
+          </aside>
+        </section>
+        <section>
+            <h2>WHAT IS ANSIBLE AUTOMATION?</h2>
+            <p>The Ansible project is an open source community sponsored by Red Hat. It’s also a <strong>simple automation language</strong> that perfectly describes IT application environments in <strong>Ansible Playbooks</strong>.
+            <br><br>
+            <strong>Ansible Engine</strong> is a <strong>supported product</strong> built from the Ansible community project.
+            <br><br>
+            Ansible Tower is an <strong>enterprise framework</strong> for controlling, securing, managing and extending your Ansible automation (community or engine) with a <strong>UI and RESTful API</strong>.</p>
+            <br><br>
+            <aside class="notes">
+              <p>The Ansible Project is open source and sponsored by Red Hat.
+                Ansible Engine is a supported product built from the Ansible community project, and Ansible Tower is the framework for the automation that Ansible Engine does.
+                There’s also an open-source version of Tower which is the AWX project, and it’s associated with the Ansible GitHub.</p>
+            </aside>
+        </section>
+
+        <section>
+            <h2>WHY ANSIBLE?</h2>
+            <p><img src="images/why_ansible.jpg"></p>
+            <aside class="notes">
+              <p>So why should you think about using Ansible and what sets it apart?
+              First off, Ansible is simple: we expect that your user base is going to be mixed with people of all skill levels and because of that we wanted to make it incredibly easy to get started.  The language playbooks are written in is YAML, which is very easy-to-read for humans, and those playbooks work consistently across many environments
+              It’s also extremely powerful in how many nodes we can spin up and manage at any given time, which is largely due to the fact that Ansible is agentless.  There are no agents to keep up to date and the requirements are minimal.
+              </p>
+            </aside>
+        </section>
+
+        <section>
+          <h2>THE ANSIBLE WAY</h2>
+          <p><font color="52AAAC"><strong>CROSS PLATFORM – Linux, Windows, UNIX</strong></font><br>
+          Agentless support for all major OS variants, physical, virtual, cloud and network.</p>
+          <p><font color="52AAAC"><strong>HUMAN READABLE – YAML</strong></font><br>
+          Perfectly describe and document every aspect of your application environment</p>
+          <p><font color="52AAAC"><strong>PERFECT DESCRIPTION OF APPLICATION</strong></font><br>
+          Every change can be made by playbooks, ensuring everyone is on the same page.</p>
+          <p><font color="52AAAC"><strong>VERSION CONTROLLED</strong></font><br>
+          Playbooks are plain-text. Treat them like code in your existing version control.</p>
+          <p><font color="52AAAC"><strong>DYNAMIC INVENTORIES</strong></font><br>
+          Capture all the servers 100% of the time, regardless of infrastructure, location, etc.</p>
+          <p><font color="52AAAC"><strong>ORCHESTRATION THAT PLAYS WELL WITH OTHERS – HP SA, Puppet, Jenkins, RHNSS, etc.</strong></font><br>
+          Homogenize existing environments by leveraging current toolsets and update mechanisms.</p>
+          <aside class="notes">
+            <p>In addition, that agentless support isn’t just Linux exclusive.
+              This also applies to Windows machines, networking devices, and of course both physical and cloud servers, as well as static or dynamic inventory.
+              Also, one of the main selling points of Ansible is that we work well with existing toolkits.
+              Sometimes people don’t know where to start; I’d advise you to pick a pain point in your environment to focus on, something small that you can leverage Ansible for and see how that feels, because you can always homogenize over time.
+            </p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>BATTERIES INCLUDED</h2>
+          <p>Ansible comes bundled with hundreds of modules for a wide variety of automation tasks:</p>
+          <div style="float: left; width: 50%;">
+          <ul>
+          <li>cloud</li>
+          <li>containers</li>
+          <li>database</li>
+          <li>files</li>
+          <li>messaging</li>
+          <li>monitoring</li>
+          <li>network</li>
+          </ul>
+          </div>
+          <div style="float: right; width: 50%;">
+          <ul>
+          <li>notifications</li>
+          <li>packaging</li>
+          <li>source control</li>
+          <li>system</li>
+          <li>testing</li>
+          <li>utilities</li>
+          <li>web infrastructure</li>
+          </ul>
+          </div>
+          <aside class="notes">
+            <p>Installing Ansible nets you a TON of modules that range in type from the popular cloud modules to packaging and database modules.
+              The list you see here are some of the “high profile” modules, but there are lots more that aren’t listed.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>COMMUNITY</h2>
+          <p><font color="52AAAC"><strong>THE MOST POPULAR OPEN-SOURCE AUTOMATION COMMUNITY ON GITHUB</strong></font><br></p>
+<!-- Remember to check the numbers listed below!!  -->
+          <ul>
+            <li>31,000+ stars & 12,000+ forks on GitHub</li>
+            <li>3500+ GitHub Contributors</li>
+            <li>Over 1500 modules shipped with Ansible</li>
+            <li>New contributors added every day</li>
+            <li>1400+ users on IRC channel</li>
+            <li>World-wide meetups taking place every week</li>
+            <li>Ansible Galaxy: over 18,000 subscribers</li>
+            <li>500,000+ downloads a month</li>
+            <li>AnsibleFests, Ansible Automates, and other global events</li>
+          </ul>
+          <p><font color="52AAAC"><strong>http://ansible.com/community</strong></font><br></p>
+          <aside class="notes">
+            <p>Plus Ansible has an amazing community.  We have tons of contributors and active participants on IRC and in our Google project list. We have about 500,000 downloads a month, which is really exciting to know that so many people use this automation tool.
+              I’d actually like to take this opportunity to mention this year’s AnsibleFest going on during the first week of October in Austin, TX, as well as numerous Ansible Automates events happening all over the world and in the US during the last three months of this year.  If you can attend any of those, we’d love to see you there!
+            </p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>ANSIBLE: COMPLETE AUTOMATION</h2>
+          <p><img src="images/complete_automation.jpg"></p>
+          <aside class="notes">
+            <p>One of the other bullet points that we highlight around Ansible is that it’s the complete package.
+              So it’s not just configuration management; it’s also orchestration, app-deployment and provisioning as well.
+              Looking at this graphic here , you can see that there are tools that definitely perform one or more of these use cases, but can’t do them all and that’s really one of the big strengths of Ansible.
+              Some users like to refer to it as “Automation Glue”.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>If you want to use code examples you can as well</h2>
+          <pre class="language-yaml"><code data-noescape>
+---
+- name: we have a yaml class built in that you can use
+  hosts: web
+  become: yes
+  vars:
+    http_port: 80
+          </code></pre>
+          <aside class="notes">
+            <p>just more speaker notes</p>
+          </aside>
+        </section>
+
+        <section>
+            <section data-state="title alt">
+              <h1>Demo Time: <br/>Adding slides below to explain another point</h1>
+              <aside class="notes">
+                <p></p>
+              </aside>
+            </section>
+            <section data-state="title alt">
+              <h1>See how it works? <br/>You can put sections inside of sections. (to remove the red just remove the data state)</h1>
+              <aside class="notes">
+                <p>more speaker notes here for those deep dive slides</p>
+              </aside>
+            </section>
+        </section>
+
+        <section>
+          <h2>Final slide</h2>
+            <p>If you have any qeuestions about how to use these slides then please consult the guide.md</p>
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/lib/js/head.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/js/reveal.js"></script>
+
+    <script>
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        history: true,
+        width: "85%",
+        height: "90%",
+        transition: "fade",
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        // Notes plugin must remain local for now.
+        // See https://github.com/ansible/lightbulb/issues/125
+        dependencies: [
+          { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/markdown/marked.js' },
+          { src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          { src: 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js'},
+          { src: 'https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-yaml.min.js'}
+          //{ src: 'https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.4.1/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        ]
+      });
+    </script>
+  </body>
+</html>
