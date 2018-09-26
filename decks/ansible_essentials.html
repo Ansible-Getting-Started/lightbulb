@@ -46,7 +46,7 @@
 
         <section>
           <h2>WHAT YOU WILL LEARN</h2>
-          <p>Ansible is capable of handling many powerful automation tasks with the flexibility to adapt to many environments and workflows. With Ansible, users can very quickly get up and running to do real work.
+          <p>Ansible is capable of handling many powerful automation tasks with the flexibility to adapt to many environments and workflows. With Ansible, users can very quickly get up and running to do real work.</p>
           <br><br>In this presentation, we will cover:</p>
           <ul>
             <li>What is Ansible</li>
@@ -60,6 +60,7 @@
             <p>Today we are going to cover the following topics: (read the list)</p>
           </aside>
         </section>
+
         <section>
             <h2>WHAT IS ANSIBLE AUTOMATION?</h2>
             <p>The Ansible project is an open source community sponsored by Red Hat. It’s also a <strong>simple automation language</strong> that perfectly describes IT application environments in <strong>Ansible Playbooks</strong>.
@@ -335,14 +336,91 @@ localhost | success >> {
         </section>
 
         <section>
+          <h2>INVENTORY</h2>
+          <p>Inventory is a collection of hosts (nodes) against which Ansible can work with.</p>
+          <ul>
+            <li>Hosts</li>
+            <li>Groups</li>
+            <li>Inventory-specific data (variables)</li>
+            <li>Static or dynamic sources</li>
+          </ul>
+          <aside class="notes">
+            <p>Ad-hoc commands and modules always come back to the inventory we’re managing.  Inventory consists of hosts, groups, inventory specific data, and whether it’s static or dynamic sources. Note that “hosts” has been expanded overtime to include network devices, containers and virtually anything else that is network-addressable.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>STATIC INVENTORY EXAMPLE</h2>
+          <pre class="language-yaml"><code data-noescape>
+            10.42.0.2
+            10.42.0.6
+            10.42.0.7
+            10.42.0.8
+            10.42.0.100
+          </code></pre>
+          <aside class="notes">
+            <p>This is a free-form static inventory listed by IP address. If I clean that up a bit, I get...</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>STATIC INVENTORY EXAMPLE</h2>
+          <pre class="language-yaml"><code data-noescape>
+            [control]
+            control ansible_host=10.42.0.2
+
+            [web]
+            node-1 ansible_host=10.42.0.6
+            node-2 ansible_host=10.42.0.7
+            node-3 ansible_host=10.42.0.8
+
+            [haproxy]
+            haproxy ansible_host=10.42.0.100
+
+            [all:vars]
+            ansible_user=vagrant
+            ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
+          </code></pre>
+          <aside class="notes">
+            <p>...a host file that’s separated into groups (which in this example is control, web, and haproxy).
+              We also have some inventory-specific data where we’re defining ansible_host for each of these different nodes, and we’ve got a vars section defined for all the hosts where we’re setting the connecting user.
+              There’s also a path to the private key file we’re using for authentication.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>STATIC INVENTORY EXAMPLE IN YAML</h2>
+          <pre class="language-yaml"><code data-noescape>
+            all:
+              vars:
+                ansible_user: vagrant
+                ansible_ssh_private_key_file: ~/.vagrant.d/insecure_private_key
+
+              children:
+                web:
+                  hosts:
+                    node-1:
+                      ansible_host: 10.42.0.6
+                    node-2:
+                      ansible_host: 10.42.0.7
+                    node-3:
+                      ansible_host: 10.42.0.8
+          </code></pre>
+          <aside class="notes">
+            <p>This is a similar example of the same hosts file in YAML format which is a new option as of version 2.4.
+              This provides some flexibility in regards to the format you might find easier to work with.</p>
+          </aside>
+        </section>
+
+        <section>
             <section data-state="title alt">
-              <h1>Demo Time: <br/>Adding slides below to explain another point</h1>
+              <h1>Demo Time!</h1>
               <aside class="notes">
                 <p></p>
               </aside>
             </section>
             <section data-state="title alt">
-              <h1>See how it works? <br/>You can put sections inside of sections. (to remove the red just remove the data state)</h1>
+              <h1>Show  a playbook written out?  Show roles?  Tower?</h1>
               <aside class="notes">
                 <p>more speaker notes here for those deep dive slides</p>
               </aside>
