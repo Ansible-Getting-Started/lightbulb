@@ -413,6 +413,282 @@ localhost | success >> {
         </section>
 
         <section>
+          <h2>VARIABLES</h2>
+          <p>Ansible can work with metadata from various sources and manage their context in the form of variables.</p>
+          <ul>
+            <li>Command line parameters</li>
+            <li>Plays and tasks</li>
+            <li>Files</li>
+            <li>Inventory</li>
+            <li>Discovered facts</li>
+            <li>Roles</li>
+          </ul>
+          <aside class="notes">
+            <p>To go into a little more detail, variables in Ansible are used to account for differences between servers.
+              By using variables, I have the ability to keep a nice layer of abstraction in my playbook and define my variables as needed in various host or group vars files.
+              These could be for things like facts or file paths or package versions.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>VARIABLE PRECEDENCE</h2>
+          <p><font color="52AAAC"><strong>The order in which the same variable from different sources will override each other:</strong></font><br></p>
+          <div style="float: left; width: 50%;">
+          <ol>
+          <li>Extra vars</li>
+          <li>Set_facts/Registered vars</li>
+          <li>Include_vars</li>
+          <li>Include_params</li>
+          <li>Role params</li>
+          <li>Task vars (only for the task)</li>
+          <li>Block vars (only for tasks in the block)</li>
+          <li>Role vars</li>
+          <li>Play vars_files</li>
+          <li>Play vars_prompt</li>
+          <li>Play vars</li>
+          </div>
+          <div style="float: right; width: 50%;">
+          <ol start="12">
+          <li>Host facts</li>
+          <li>Playbook host_vars</li>
+          <li>Inventory host_vars</li>
+          <li>Inventory file/script host vars</li>
+          <li>Playbook group_vars</li>
+          <li>Inventory group_vars</li>
+          <li>Playbook group_vars/all</li>
+          <li>Inventory group_vars/all</li>
+          <li>Inventory file or script group vars</li>
+          <li>Role defaults</li>
+          </ol>
+          </div>
+          <aside class="notes">
+            <p>This brings up a good time to talk about variable precedence, which is basically the order in which the same variables will override each other.
+              The latest version has 21 levels of variable precedence wherein extra_vars will always take precedence and role_defaults will get overwritten by all of these other var types.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>TASKS</h2>
+          <p><font color="52AAAC">Tasks are the application of a module to perform a specific unit of work.</font><br><br></p>
+          <ul>
+            <li><strong>file:</strong>A directory should exist</li>
+            <li><strong>yum:</strong>A package should be installed</li>
+            <li><strong>service:</strong>A service should be running</li>
+            <li><strong>template:</strong>Render a configuration file from a template</li>
+            <li><strong>get_url:</strong>Fetch an archive file from a URL</li>
+            <li><strong>git:</strong>Clone a source code repository</li>
+          </ul>
+          <aside class="notes">
+            <p>Just to recap, so far we’ve talked about acting against inventory with modules, but those modules are going to be contained in things called tasks.
+              These are simple and declarative, because we’re telling the module to do something specific like (give examples from slide of things the modules will do within the tasks).
+            </p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>EXAMPLE TASKS IN A PLAY</h2>
+          <pre class="language-yaml"><code data-noescape>
+tasks:
+- name: add cache in directory
+  file:
+    path: /opt/cache
+    state: directory
+
+- name: install nginx
+  yum:
+    name: nginx
+    state: latest
+
+- name: restart nginx
+  service:
+    name: nginx
+    state: restarted
+          </code></pre>
+          <aside class="notes">
+            <p>In this example, the first task is called “add cache in directory”.
+              Note that you can name it anything you'd like.
+              Here we're going to call the file module and give it a couple of options.
+              Our path is going to be opt/cache and the state is directory, meaning we're going to create the directory opt/cache.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>HANDLER TASKS</h2>
+          <p><font color="52AAAC"><strong>Handlers are special tasks that run at the end of a play if notified by another task.</strong></font><br><br></p>
+          <aside class="notes">
+            <p>Normal tasks run sequentially, handler tasks run on notification.
+              Handlers may be notified multiple times during a single play, and are triggered when a tasks causes a change in state.
+              If nothing notifies a handler, it will not run. Regardless of how many tasks notify a handler, it will run only once, after all of the tasks complete in a particular play.
+            </p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>EXAMPLE HANDLER IN A PLAY</h2>
+          <pre class="language-yaml"><code data-noescape>
+tasks:
+  - name: add cache dir
+	 file:
+      path: /opt/cache
+      state: directory
+
+  - name: install nginx
+    yum:
+      name: nginx
+      state: latest
+    notify: restart nginx
+
+handlers:
+  - name: restart nginx
+    service:
+      name: nginx
+      state: restarted
+          </code></pre>
+          <aside class="notes">
+            <p>In this slide, we have an example of a handler in which after we install nginx, we add a notify to restart the services.
+              Then, there’s a handlers section in which we define that handler.
+              If the conditions to trigger the handler aren’t met, then the handler won’t run.
+              Handlers may be notified multiple times during a single play, and are triggered when a task causes a change in state.
+            </p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>PLAYS & PLAYBOOKS</h2>
+          <p><font color="52AAAC"><strong>Plays are ordered sets of tasks to execute against host selections from your inventory.
+            A playbook is a file containing one or more plays.</strong></font><br><br></p>
+          <aside class="notes">
+            <p>All these things we’ve been talking about including tasks, handlers, modules, etc. are all part of what make up plays and playbooks.
+            </p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>PLAYBOOK EXAMPLE</h2>
+          <pre class="language-yaml"><code data-noescape>
+---
+- name: install and start apache
+  hosts: web
+  vars:
+    http_port: 80
+    max_clients: 200
+  remote_user: root
+
+  tasks:
+  - name: install httpd
+    yum: pkg=httpd state=latest
+  - name: write the apache config file
+    template: src=/srv/httpd.j2 dest=/etc/httpd.conf
+  - name: start httpd
+    service: name=httpd state=started
+          </code></pre>
+          <aside class="notes">
+            <p>We’re gonna break down what makes up a playbook and review what we’ve been talking about so far.
+            </p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>ROLES</h2>
+          <p><font color="52AAAC"><strong>Roles are a packages of closely-related Ansible content that can be shared more easily than plays alone.</strong></font><br><br></p>
+          <aside class="notes">
+            <ul>
+              <li>Improves readability and maintainability of complex plays</li>
+              <li>Eases sharing, reuse and standardization of automation processes</li>
+              <li>Enables Ansible content to exist independently of playbooks, projects -- even organizations</li>
+              <li>Provides functional conveniences such as file path resolution and default values</li>
+            </ul>
+          <aside class="notes">
+            <p>We’re gonna break down what makes up a playbook and review what we’ve been talking about so far.
+            </p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>PLAYBOOK EXAMPLE</h2>
+          <pre class="language-yaml"><code data-noescape>
+site.yml
+roles/
+   common/
+     files/
+     templates/
+     tasks/
+     handlers/
+     vars/
+     defaults/
+     meta/
+   webservers/
+     files/
+     templates/
+     tasks/
+     handlers/
+     vars/
+     defaults/
+     meta/
+          </code></pre>
+          <aside class="notes">
+            <p>This is how it looks from a project perspective.
+              Not all of these directories need to be used, these are just standards that are available and ready to fill in with your tasks, handlers, variables, whatever you need for the particular role.
+            </p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>PLAYBOOK WITH ROLES EXAMPLE</h2>
+          <pre class="language-yaml"><code data-noescape>
+# site.yml
+---
+- hosts: web
+  roles:
+     - common
+     - webservers
+          </code></pre>
+          <aside class="notes">
+            <p>This is how you would call a role from the main playbook.
+              It keeps everything simple and you can switch things out or delete easily without parsing through a huge list of tasks that you’ve made separately for every host type.
+            </p>
+          </aside>
+        </section>
+
+        <section>
+            <h2>ANSIBLE GALAXY</h2>
+            <p><img src="images/galaxy.jpg"></p>
+            <aside class="notes">
+              <p>If you’d like to check out our huge community site for Ansible roles, visit Galaxy.Ansible.com.
+                You can sort through things by author name, stars, number of downloads, as well as other filters, and you can even share your own roles here as well.
+              </p>
+            </aside>
+        </section>
+
+        <section>
+          <h2>WHERE TO FIND PLAYBOOK EXAMPLES</h2>
+          <p><strong>General Examples:</strong></p>
+          <p>https://github.com/ansible/ansible-examples</p>
+          <p><strong>Lightbulb:</strong></p>
+          <p>https://github.com/ansible/lightbulb/tree/master/examples</p>
+          <p><strong>Ansible + Vagrant:</strong></p>
+          <p>https://github.com/geerlingguy/ansible-vagrant-examples</p>
+          <aside class="notes">
+            <p>Here are some places where you can find some good playbook examples.</p>
+          </aside>
+        </section>
+
+        <section>
+          <h2>WHERE TO FIND PLAYBOOK EXAMPLES</h2>
+          <p><strong>Would you like to learn Ansible?  It’s easy to get started:</strong></p>
+          <p>ansible.com/get-started</p>
+          <p><strong>Have you used Ansible already?  Try Tower for free:</strong></p>
+          <p>ansible.com/tower-trial</p>
+          <p><strong>Want to learn more?</strong></p>
+          <p>ansible.com/whitepapers</p>
+          <aside class="notes">
+            <p>If you’d like to learn more about Ansible our Getting Started page is a great resource.
+              Our documentation is also very thorough and well-written, so check that out as well.
+              If you’re ready to try Tower you can visit our Tower Trial page, and you can also check out the whitepapers on our website!</p>
+          </aside>
+        </section>
+
+        <section>
             <section data-state="title alt">
               <h1>Demo Time!</h1>
               <aside class="notes">
@@ -420,7 +696,7 @@ localhost | success >> {
               </aside>
             </section>
             <section data-state="title alt">
-              <h1>Show  a playbook written out?  Show roles?  Tower?</h1>
+              <h1>Show a playbook written out?  Show roles?  Tower?</h1>
               <aside class="notes">
                 <p>more speaker notes here for those deep dive slides</p>
               </aside>
@@ -428,8 +704,7 @@ localhost | success >> {
         </section>
 
         <section>
-          <h2>Final slide</h2>
-            <p>If you have any qeuestions about how to use these slides then please consult the guide.md</p>
+          <h1>Thank You!</h1>
         </section>
       </div>
     </div>
