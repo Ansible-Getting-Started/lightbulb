@@ -48,8 +48,8 @@
           <ul>
             <li>What is a playbook?</li>
             <li>What are we Automating</li>
+            <li>What makes up a playbook</li>
             <li>YAML structuring and format</li>
-            <li>Example Build</li>
             <li>Roles and Sharing Automation</li>
           </ul>
           <aside class="notes">
@@ -57,27 +57,57 @@
           </aside>
         </section>
         <section>
+            <h2>What are you automating?</h2>
+            <ul>
+              <li>What OS? What kinds of security measures are on the managed node?</li>
+              <li>Ansible will do what you tell it to.</li>
+            <ul>
+            <aside class="notes">
+              <p>What you are automating is crucial because it determines how you will write your playbooks.</p>
+              <p>Are there multiple OSs that you wish to automate at once? What does the security on those machines look like?</p>
+              <p>The answers to these questions all affect how you will structure your playbook.</p>
+              <p>To follow that up, ansible assumes you know what you are doing. It will do exactly what you tell it do and exactly that order.</p>
+              <p>So if you need to do something, lets say change a line in a conf file, remember to call a handler to restart that service if it needs to be. Ansible won't know to do that automatically.</p>
+            </aside>
+        </section>
+        <section>
             <h2>What is a playbook?</h2>
-            <p>A set of instructions to do something on a remote host(s)</p>
+              <p>A set of instructions to do something on a remote host(s)</p>
             <aside class="notes">
-              <p> Here are the speaker notes again.</p>
+              <p>Imagine a set of instructions to do something, like building a piece of furniture. When those instructions are done in the exact order, the piece of furniture looks like the picture on the outside of the box.</p>
             </aside>
         </section>
         <section>
-            <h2>Here is another slide</h2>
-            <aside class="notes">
-            </aside>
-        </section>
-        <section>
-          <h2>This might be another slide here as well.</h2>
+          <h2>What makes up a playbook?</h2>
+          <ul>
+            <li>Header</li>
+            <li>Tasks</li>
+            <li>Handlers</li>
           <aside class="notes">
-            <p>Here are more speaker notes</p>
+            <p>There are 3 parts to a playbook. The header, tasks and then if you need them, handlers at the end.</p>
+            <p>The header contains all of the necessary information in regards to what ansible is going to target and run against. The host information is contained here, the applicable variables etc.</p>
+            <p>The tasks are the meat, the actual bits that describe and do the automating. The lineinfile actions, the yum bits. The next couple of slides, we will dig deeper into this.</p>
+            <p>And finally, handlers, handling any restarts or notifies of things that might need some clean up after something is done.</p>
           </aside>
         </section>
         <section>
-          <h2>This is yet another slide.</h2>
+          <pre class="language-yaml"><code data-noescape>
+---
+- hosts: webservers
+  vars:
+    http_port: 80
+    max_clients: 200
+  remote_user: root
+  tasks:
+  - name: ensure apache is at the latest version
+    yum:
+      name: httpd
+      state: latest
+          </code></pre>
           <aside class="notes">
-            <p>Here are more speaker notes</p>
+            <p>Here is a basic example of a playbook. Do note that the handlers are cut off here purely for the amount of space.</p>
+            <p>At the top here you can see the header, stating what hosts the playbook is targeting and what vars to use. Note that for this example is using root but that you don't need to use root, just a user that has the correct privileges to make the changes.</p>
+            <p>Then you get to the tasks, the good stuff. The meat of the playbook, the stuff that is making the changes.</p>
           </aside>
         </section>
         <section>
