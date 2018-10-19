@@ -149,7 +149,64 @@ tasks:
         </section>
         <section>
           <h2>Using Loops</h2>
-            <p></p>
+            <p>Loops can be used to save some typing.</p>
+            <p>Short handed task writing to automate your keystrokes</p>
+          <aside>
+            <p>In Ansible you can use loops to loop through redundant tasks to automate away some extra keystrokes.</p>
+        </section>
+        <section>
+          <h2>Loop Example</h2>
+          <pre class="language-yaml"><code data-noescape>
+- name: add several users
+  user:
+    name: "{{ item }}"
+    state: present
+    groups: "wheel"
+  loop:
+     - testuser1
+     - testuser2
+          </code></pre>
+        <aside>
+          <p>Similar to the use of loops in a general programitic way, loops in playbooks are similar but...as the ansible way is...a little more simpler on the eye.</p>
+          <p>This example shows a task looping through creating testuser 1 and 2, then adding them to the wheel group.</p>
+        </aside>
+        </section>
+        <section>
+          <h2>Handlers</h2>
+          <p>The quicker restarter, the cleanup crew.</p>
+          <p> Regardless of how many tasks notify a handler, it will run only ONCE.</p>
+        <aside>
+          <p>Handlers are lists of tasks, not really any different from regular tasks, that are referenced by a globally unique name, and are notified by notifiers. If nothing notifies a handler, it will not run. Regardless of how many tasks notify a handler, it will run only once, after all of the tasks complete in a particular play.</p>
+          <p>Imagine clean up tasks, if you need them. Not every task needs them but sometimes you might have to restart something.</p>
+        </aside>
+        </section>
+        <section>
+          <h2>What a handler looks like</h2>
+          <pre class="language-yaml"><code data-noescape>
+- name: restart apache
+      service:
+        name: httpd
+        state: restarted
+        </code></pre>
+        <aside>
+          <p>This example shows what a handler looks like. Not so different from a regular task right?</p>
+          <p>Simple and straight to the point. Notifying a handler is a little different but super easy to plug straight into a task if you need.</p>
+        </aside>
+        </section>
+        <section>
+          <h2>Notifying a handler</h2>
+          <pre class="language-yaml"><code data-noescape>
+- name: write the apache config file
+    template:
+      src: /srv/httpd.j2
+      dest: /etc/httpd.conf
+    notify:
+    - restart apache
+        </code></pre>
+        <aside>
+          <p>Here we can see how you notify the handler from the above example. That one being called "restart apache"</p>
+          <p>Handlers work great and serve a higher purpose but one last time, remember that they only run ONCE!</p>
+        </aside>
         </section>
       </div>
     </div>
