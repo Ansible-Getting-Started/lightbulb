@@ -122,42 +122,34 @@
           </aside>
         </section>
         <section>
-          <h2>another slide</h2>
+          <h2>Conditionals</h2>
+            <p>Yes, you can use them in playbooks</p>
+            <p>Some of the most popular are:
+              <ul>
+                <li>When Statement</li>
+                <li>Register</li>
+            </p>
           <aside class="notes">
-            <p>Here are more speakers notes, are we getting the hang of where stuff goes?</p>
+            <p>Diving deeper into the meat of tasks, you can use conditionals within tasks. Sometimes tasks depend on other things being present, or maybe you just want some tasks to run on certain hosts when a particular criteria is met.</p>
+            <p>In come conditionals. We are only going to talk about the basic uses of them but if you want to see more in depth examples, there are a bunch of examples in the playbook section of our documentation.</p>
           </aside>
         </section>
         <section>
-          <h2>If you want to use code examples you can as well</h2>
+          <h2>When Statement</h2>
           <pre class="language-yaml"><code data-noescape>
----
-- name: we have a yaml class built in that you can use
-  hosts: web
-  become: yes
-  vars:
-    http_port: 80
+tasks:
+  - name: "shut down Debian flavored systems"
+    command: /sbin/shutdown -t now
+    when: ansible_facts['os_family'] == "Debian"
           </code></pre>
           <aside class="notes">
-            <p>just more speaker notes</p>
+            <p>This could be something as simple as not installing a certain package if the operating system is a particular version.</p>
+            <p>Above is an example of a simple when statement showing a task tha will only shutdown when the ansible_facts shows an OS family of Debian.</p>
           </aside>
         </section>
         <section>
-            <section data-state="title alt">
-              <h1>Demo Time: <br/>Adding slides below to explain another point</h1>
-              <aside class="notes">
-                <p></p>
-              </aside>
-            </section>
-            <section data-state="title alt">
-              <h1>See how it works? <br/>You can put sections inside of sections. (to remove the red just remove the data state)</h1>
-              <aside class="notes">
-                <p>more speaker notes here for those deep dive slides</p>
-              </aside>
-            </section>
-        </section>
-        <section>
-          <h2>Final slide</h2>
-            <p>If you have any qeuestions about how to use these slides then please consult the guide.md</p>
+          <h2>Using Loops</h2>
+            <p></p>
         </section>
       </div>
     </div>
