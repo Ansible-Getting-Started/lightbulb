@@ -49,7 +49,6 @@
             <li>What is a playbook?</li>
             <li>What are we Automating</li>
             <li>What makes up a playbook</li>
-            <li>YAML structuring and format</li>
             <li>Roles and Sharing Automation</li>
           </ul>
           <aside class="notes">
@@ -112,9 +111,11 @@
         </section>
         <section>
           <h2>Forming a task</h2>
-            <p>Starts with a name</p>
-            <p>The module and specific arguments</p>
-            <p>Your variables can be used in arguments</p>
+            <ul>
+            <li>Starts with a name</li>
+            <li>The module and specific arguments</li>
+            <li>Your variables can be used in arguments</li>
+          </ul>
           <aside class="notes">
             <p>It all starts with a name. Naming a task is something very important because it is displayed during the execution of ansible. Name it something that is close to what the task is doing so that in case it fails, you know immediately how you can start debugging it.</p>
             <p>Next, you will need to pick a module. Your selection will depend on what you task you are trying to accomplish. You can find a list of all available modules at docs.ansible.com </p>
@@ -149,9 +150,11 @@ tasks:
         </section>
         <section>
           <h2>Using Loops</h2>
-            <p>Loops can be used to save some typing.</p>
-            <p>Short handed task writing to automate your keystrokes</p>
-          <aside>
+            <ul>
+              <li>Loops can be used to save some typing.</li>
+              <li>Short handed task writing to automate your keystrokes</li>
+            <ul>
+          <aside class="notes">
             <p>In Ansible you can use loops to loop through redundant tasks to automate away some extra keystrokes.</p>
         </section>
         <section>
@@ -166,16 +169,18 @@ tasks:
      - testuser1
      - testuser2
           </code></pre>
-        <aside>
+        <aside class="notes">
           <p>Similar to the use of loops in a general programitic way, loops in playbooks are similar but...as the ansible way is...a little more simpler on the eye.</p>
           <p>This example shows a task looping through creating testuser 1 and 2, then adding them to the wheel group.</p>
         </aside>
         </section>
         <section>
           <h2>Handlers</h2>
-          <p>The quicker restarter, the cleanup crew.</p>
-          <p> Regardless of how many tasks notify a handler, it will run only ONCE.</p>
-        <aside>
+            <ul>
+              <li>The quicker restarter, the cleanup crew.</li>
+              <li> Regardless of how many tasks notify a handler, it will run only ONCE.</li>
+            </ul>
+        <aside class="notes">
           <p>Handlers are lists of tasks, not really any different from regular tasks, that are referenced by a globally unique name, and are notified by notifiers. If nothing notifies a handler, it will not run. Regardless of how many tasks notify a handler, it will run only once, after all of the tasks complete in a particular play.</p>
           <p>Imagine clean up tasks, if you need them. Not every task needs them but sometimes you might have to restart something.</p>
         </aside>
@@ -188,7 +193,7 @@ tasks:
         name: httpd
         state: restarted
         </code></pre>
-        <aside>
+        <aside class="notes">
           <p>This example shows what a handler looks like. Not so different from a regular task right?</p>
           <p>Simple and straight to the point. Notifying a handler is a little different but super easy to plug straight into a task if you need.</p>
         </aside>
@@ -203,10 +208,38 @@ tasks:
     notify:
     - restart apache
         </code></pre>
-        <aside>
+        <aside class="notes">
           <p>Here we can see how you notify the handler from the above example. That one being called "restart apache"</p>
           <p>Handlers work great and serve a higher purpose but one last time, remember that they only run ONCE!</p>
         </aside>
+        </section>
+        <section>
+          <h2>Roles and Sharing Automation</h2>
+            <ul>
+              <li>What are roles?</li>
+              <li>Playbook vs Role</li>
+          </ul>
+        <aside class="notes">
+          <p>Roles are ways of automatically loading certain vars_files, tasks, and handlers based on a known file structure. Grouping content by roles also allows easy sharing of roles with other users.</p>
+          <p>Imagine you need to provision a server for a web app and coworker needs a db machine. At the end of the day, both machines are doing different jobs but if you are a part of a large organization, you might have a standard image.</p>
+          <p>Using roles, you can write a provisioning role that provisions the machine exactly as your organization outlines it and then share that role with a co-worker and it will work exactly the same way.</p>
+          <p>Playbooks and roles are different, playbooks is the larger picture, provisioning the machine AND installing the app while roles are small bite size chunks of automation. ONLY provisioning the machine or ONLY installing nginx.</p>
+        </aside>
+        </section>
+        <section>
+          <h2>Ansible Galaxy</h2>
+            <ul>
+              <li>What is it?</li>
+              <li>How can I use it?</li>
+              <li>https://galaxy.ansible.com/</li>
+            <ul>
+        <aside class="notes">
+          <p>Ansible Galaxy is a hub for finding, reusing and sharing Ansible content. You can find some of the most popular roles there, like geerlingguy's nginx role.</p>
+          <p>Ansible Galaxy is also a command line tool that comes with ansible. You can use it to do a bunch of things like create a role and the directory structure needed for a functioning role. You can do this by running the ansible-galaxy init name_role_here.</p>
+        </aside>
+      </section>
+        <section>
+          <h2>Thanks all!</h2>
         </section>
       </div>
     </div>
