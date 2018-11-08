@@ -1,14 +1,14 @@
-### This guide is meant to explain how to fill out our skeleton deck.
-The deck can be found in the `decks/` durectory out on its own. 
+# Skeleton Deck Contribution Guide
+This guide is meant to explain how to fill out our skeleton deck.  The decks can be found in the `decks/` directory out on its own. 
 
-##Creating and using the presentation
+## Creating and using the presentation
 
-#The Slides
+#### The Slides
 Each slide, starting from the very beginning can be found in the `<section>` headers. Once there, you can add anything you want in a number of ways. Depending on how you want to add them, you can add them with `<p> paragraphs` or with `<li> lists`
 
 Speaker notes are found at the **bottom** of each section/slide. Before the slide ends `</section>` there are the opening and close of `<aside>` which is where you can put your speaker notes.
 
-You can do a deep dive in these slides as well. To put slides below another slide, lets say for instance if you want to have steps listed for a demo, then you can put a section under a section. so the syntax would look something like this:
+You can do a deep dive in these slides as well. To put slides below specific slide, lets say for instance if you want to have steps listed for a demo, then you can put a section under a section. The syntax would look something like this:
 
 ```
 <section>
@@ -20,7 +20,7 @@ You can do a deep dive in these slides as well. To put slides below another slid
 </section>
 ```
 
-#Presenting the slides
+#### Presenting the slides
 To use the slides, simply find them locally and double click to launch them. It will default to your default browser and you can navigate through the slides using the arrow keys. 
 
 If you added a drop down in your slides, when you get to that slide, you will be able to navigate down using the arrow keys. Depending on how many you added, once you get to your last one, you can simply push right and that will take you up and to the next slide. 
