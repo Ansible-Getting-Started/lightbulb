@@ -36,7 +36,7 @@ The `guides/` provide closely guided exercises with a lower barrier to entry. Th
 
 ### Lab Provisioner
 
-**Coming Soon.** Vagrant support for self-paced learning is planned. Legacy support from the previous generation of Lightbulb remains, but is in need of an overhaul.
+This fork of lightbulb doesn't contain a provisioner. However, you can find one at the main fork at ansible/lightbulb
 
 ### Facilitator Documentation
 
