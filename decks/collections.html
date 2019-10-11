@@ -44,28 +44,63 @@
           <p>Jake Jackson, Software Engineer: Partners</p>
         </section>
         <section>
-          <h2>Greg Slide</h2>
-          <p></p>
+          <h1>The Key Ansible Principles:</h1>
           <aside class="notes">
             <p>Here are your speaker notes. </p>
           </aside>
         </section>
         <section>
-            <h2>Another Greg Slide</h2>
-            <p> These slides are written in reveal.js and html. </p>
-              <ul>
-                <li>So if you want to add your notes or anything </li>
-                <li>In some kind of list or another "html" support way </li>
-                <li>Then you can</li>
-              </ul>
+          <h2>Simplicity</h2>
+            <li>simple to install</li>
+            <li>simple to use</li>
+            <li>simple to find documentation and examples</li>
+            <li>simple to write playbooks</li>
+            <li>simple to make contributions</li>
+          <h2>Modularity</h2>
+            <li>Don't have to know all of Ansible to contribute</li>
+            <li>3000+ modules now</li>
+          <h2>"Batteries included"</h2>
+            <li>install ansible, get access to everything</li>
             <aside class="notes">
               <p> Here are the speaker notes again.</p>
             </aside>
         </section>
         <section>
-            <h2>Here is another slide</h2>
+          <h2>Success Brings Growth</h2>
+          <p><img src="images/ansible_contribution_growth.gif"></p>
+          <h2>Growth brings Complexity</h2>
+          <aside class="notes">
+            <p>Here are more speaker notes</p>
+          </aside>
+        </section>
+        <section>
+          <h1>Challenges of Growth</h1>
+          <h2>Support</h2>
+          <li>"We ship it, we support it"</li>
+          <li>True once upon a time</li>
+          <li>Not true now (and hasn't been for a while)</li>
+          <h2>Lifecycle</h2>
+          <li>Ansible release cycles are slowing down</li>
+          <li>Partners and community may want faster releases of content</li>
+          <h2>Rising Bar</h2>
+          <li>Customers expect higher quality</li>
+          <li>Community can not always deliver higher quality</li>
+          <h2>New Module Contributors</h2>
+          <li>Rising Bar means we are more conservative about what we accept</li>
+          <li>New Module backlog is at an all time high</li>
+          <li>FIXME: point to data</li>
+          <aside class="notes">
+            <p>Here are more speaker notes</p>
+          </aside>
+        </section>
+        <section>
+            <h1>Collections are the proposal to solve these challenges.</h1>
             <aside class="notes">
+              <p>Here are more speaker notes</p>
             </aside>
+          </section>
+        <section>
+          <h1>What is a collection? [DEMO TIME]</h1>
         </section>
         <section>
           <h2>Collections: Directory Structure and Usage</h2>
@@ -77,55 +112,49 @@
           </aside>
         </section>
         <section>
-          <h2>This is yet another slide.</h2>
-          <aside class="notes">
-            <p>Here are more speaker notes</p>
-          </aside>
+            <h1>How will we move to collections?</h1>
         </section>
         <section>
-          <h2>And another slide</h2>
+          <h1>Development: Splitting collections into different components</h1>
+          <h2>Core Engine Collection</h2>
+          <li>The platform that runs everything else</li>
+          <li>Development process similar to today</li>
+          <h2>Core Module and Plugin Collection</h2>
+          <li>The 100-ish most used plugins</li>
+          <li>FIXME: point to data</li>
+          <li>Dev process similar to today</li>
+          <h2>Community Modules and Plugins</h2>
+          <li>Many current modules/plugins in Ansible but not in Core will move here</li>
+          <li>Development process will evolve over time to be more community-focused</li>
+          <h2>Partner Collections</h2>
+          <li>For partners who want to offer supported modules/plugins</li>
+          <li>Development process will be up to partners</li>
+          <li>Partner Collections can be Certified</li>
           <aside class="notes">
             <p>More and more speaker notes</p>
           </aside>
         </section>
         <section>
-          <h2>another slide</h2>
+          <h1>Deployment: Multiple deployment options</h1>
+          <h3>Install Ansible (core engine) then...</h3>
+          <h2>Batteries Included Method:</h2>
+          <li>Install via Ansible Galaxy</li>
+          <li>All Core modules and plugins</li>
+          <li>All Community Modules/plugins</li>
+          <li>Certain Partner modules/plugins</li>
+          <h2>Enterprise Supported Method:</h2>
+          <li>Install via Automation Hub</li>
+          <li>All core modules/plugins</li>
+          <li>Integrated with Ansible Tower</li>
+          <li>Partner modules/plugins a la carte by customer choice/policy</li>
+          <li>Customer has option to install unsupported content</li>
           <aside class="notes">
             <p>Here are more speakers notes, are we getting the hang of where stuff goes?</p>
           </aside>
         </section>
         <section>
-          <h2>If you want to use code examples you can as well</h2>
-          <pre class="language-yaml"><code data-noescape>
----
-- name: we have a yaml class built in that you can use
-  hosts: web
-  become: yes
-  vars:
-    http_port: 80
-          </code></pre>
-          <aside class="notes">
-            <p>just more speaker notes</p>
-          </aside>
-        </section>
-        <section>
-            <section data-state="title alt">
-              <h1>Demo Time: <br/>Adding slides below to explain another point</h1>
-              <aside class="notes">
-                <p></p>
-              </aside>
-            </section>
-            <section data-state="title alt">
-              <h1>See how it works? <br/>You can put sections inside of sections. (to remove the red just remove the data state)</h1>
-              <aside class="notes">
-                <p>more speaker notes here for those deep dive slides</p>
-              </aside>
-            </section>
-        </section>
-        <section>
-          <h2>Final slide</h2>
-            <p>If you have any qeuestions about how to use these slides then please consult the guide.md</p>
-        </section>
+          <h1>Thanks! Questions?</h1>
+        <!-- <p><img src="images/ansible_contribution_growth.gif"></p>-->
       </div>
     </div>
 
